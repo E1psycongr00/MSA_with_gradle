@@ -27,11 +27,20 @@ public class OrderController {
 		return orderService.selectOrderByUserId(userid);
 	}
 	
+	// 서비스간 통신1 - RestTemplate
 	@ApiOperation(value = "주문 등록", httpMethod = "POST", notes = "주문 등록")
 	@PostMapping(value="/insertOrder")
 	public int insertOrder(@RequestBody Order order) throws Exception{
 		order.setOrderId(UUID.randomUUID().toString());
 		return orderService.insertOrder(order);
+	}
+	
+	//서비스간 통신2- Feign client
+	@ApiOperation(value = "주문 등록2", httpMethod = "POST", notes = "주문 등록2")
+	@PostMapping(value="/insertOrderFeign")
+	public int insertOrderFeign(@RequestBody Order order) throws Exception{
+		order.setOrderId(UUID.randomUUID().toString());
+		return orderService.insertOrderFeign(order);
 	}
 }
 
