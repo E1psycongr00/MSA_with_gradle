@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+ 
+<mapper namespace="com.ecommerce.catalogs.domain.repository.CatalogsRepository">
+   
+ 	<select id="selectAllCatalogs" resultType="Catalogs">
+ 		select product_id, product_name, stock, price, create_date
+ 		from MSA_CATALOGS
+ 	</select>
+ 	
+ 	<select id="selectCatalogsByProductId" resultType="Catalogs" parameterType="string">
+ 		select product_id, product_name, stock, price, create_date
+ 		from MSA_CATALOGS
+ 		where product_id = #{product_id}
+ 	</select>
+ 	
+ 	<insert id="insertCatalogs" parameterType="Catalogs">
+ 		insert into MSA_CATALOGS ( product_id, product_name, stock, price )
+ 		values ( #{productId}, #{productName}, #{stock}, #{price} )
+ 	</insert>
+ 	
+ 	<delete id="deleteCatalogs" parameterType="string">
+ 		delete from MSA_CATALOGS
+ 		where product_id = #{product_id}
+ 	</delete>
+ 	
+ 	<update id="updateCatalogs" parameterType="Catalogs">
+ 		update MSA_CATALOGS
+ 		set product_name=#{productName}, stock=#{stock} , price=#{price}
+ 		where product_id=#{productId}
+ 	</update>
+</mapper>
+
+
+

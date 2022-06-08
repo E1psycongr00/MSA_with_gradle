@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+ 
+<mapper namespace="com.ecommerce.customer.domain.repository.CustomerRepository">
+    <insert id="insertCustomer" parameterType="com.ecommerce.customer.domain.entity.Customer">
+        insert into MSA_CUSTOMER ( userid, pwd, name, email) 
+        values (#{userid}, #{pwd}, #{name}, #{email})
+    </insert>
+    
+ 	<select id="selectCustomerByUserid" resultType="Customer" 
+ 	parameterType="string">
+ 		select userid, pwd, name, email, create_date as  createDate
+ 		from MSA_CUSTOMER
+ 		where userid = #{userid}
+ 	</select>
+ 	
+ 	<select id="selectAllCustomer" resultType="Customer" 
+ 	parameterType="string">
+ 		select userid, pwd, name, email, create_date as  createDate
+ 		from MSA_CUSTOMER
+ 	</select>
+ 	
+ 	<select id="existsCustomer" resultType="int" 
+ 	parameterType="string">
+ 		select count(*)
+ 		from MSA_CUSTOMER
+ 		where userid = #{userid} 
+ 	</select>
+ 	
+ 	<delete id="deleteCustomer" parameterType="string">
+ 		delete from MSA_CUSTOMER
+ 		where userid = #{userid}
+ 	</delete>
+ 	
+ 	<update id="updateCustomer" parameterType="Customer">
+ 		update MSA_CUSTOMER
+ 		set name=#{name}, pwd = #{pwd}, email= #{email}
+ 		where userid = #{userid}
+ 	</update>
+</mapper>

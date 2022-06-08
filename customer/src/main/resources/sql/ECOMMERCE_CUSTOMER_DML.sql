@@ -1,0 +1,6 @@
+
+INSERT INTO MSA_CUSTOMER(USERID, PWD, NAME, EMAIL)
+VALUES('1111', '1234', '홍길동', 'hong@korea.com'); 
+
+INSERT INTO MSA_CUSTOMER(USERID, PWD, NAME, EMAIL)
+VALUES('2222', '1234', '박문각', 'park@korea.com'); 
