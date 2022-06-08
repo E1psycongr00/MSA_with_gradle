@@ -9,4 +9,6 @@ public interface OrderService {
 	public List<Order> selectOrderByUserId(String userid) throws Exception;
 
 	public int insertOrder(Order order) throws Exception;
+	
+	public int insertOrderFeign(Order order) throws Exception;
 }
