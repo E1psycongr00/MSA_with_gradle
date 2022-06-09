@@ -2,4 +2,5 @@ rootProject.name = 'msatest_gradle'
 include 'customer'
 include 'order'
 include 'catalogs'
+include 'ecommerce_eruka'
 
