@@ -6,6 +6,7 @@ import com.ecommerce.order.rest.customer.CustomerFeignClient;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -23,7 +24,8 @@ public class OrderServiceImpl implements OrderService {
 	@Value("${customer.api.url}")
 	String customer_api_url;
 	
-	//RestTemplate 생성
+	//RestTemplate
+	@LoadBalanced
 	@Bean  // @Bean으로 지정하면 자동으로 메서드 호출됨
 	public RestTemplate getRestTemplate() {
 		return new RestTemplate();
