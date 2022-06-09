@@ -3,6 +3,7 @@ package com.ecommerce.order.service;
 import java.util.List;
 
 import com.ecommerce.order.rest.customer.CustomerFeignClient;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -40,6 +41,7 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
+	@HystrixCommand(fallbackMethod = "insertOrderFallback", commandKey = "retrieveCustomer")
 	public int insertOrder(Order order) throws Exception {
 		// Order안에 고객명이 누락된 상태이다.
 		String url = customer_api_url+"/rest/customers/"+order.getUserId();
@@ -55,6 +57,13 @@ public class OrderServiceImpl implements OrderService {
 		order.setName(cust.getName());
 		
 		return orderRepository.insertOrder(order);
+	}
+	
+	public int insertOrderFallback(Order order) throws Exception {
+		// 서킷 브레이커 동작시 해야 되는 추가 작업 구현
+		String mesg = "Error:"+ order.getUserId()+" 에 해당하는 고객정보 조회가 지연되고 있습니다. 나중에 다시 요청하세요";
+		System.out.println(mesg);
+		throw new Exception();
 	}
 }
 
