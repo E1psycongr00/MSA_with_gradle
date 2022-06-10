@@ -3,4 +3,5 @@ include 'customer'
 include 'order'
 include 'catalogs'
 include 'ecommerce_eruka'
+include 'ecommerce_api_gateway'
 
