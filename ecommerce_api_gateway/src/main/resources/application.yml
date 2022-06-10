@@ -1,0 +1,35 @@
+
+
+server:
+  port: 8070
+  
+spring:
+  application:
+    name: ecommerce-apigateway
+
+  cloud:
+    gateway:
+      routes:
+      - id: ECOMMERCE-CUSTOMER
+        uri: lb://ECOMMERCE-CUSTOMER
+        predicates:
+        - Path=/ecommerce/customer/**
+      - id: ECOMMERCE-ORDER
+        uri: lb://ECOMMERCE-ORDER
+        predicates:
+        - Path=/ecommerce/order/**
+      - id: ECOMMERCE-CATALOGS
+        uri: lb://ECOMMERCE-CATALOGS
+        predicates:
+        - Path=/ecommerce/catalogs/**
+
+# eureka
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    fetch-registry:  true
+    register-with-eureka: true
+  instance:
+    prefer-ip-address: true    
