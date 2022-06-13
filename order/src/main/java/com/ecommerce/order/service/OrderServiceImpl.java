@@ -2,7 +2,9 @@ package com.ecommerce.order.service;
 
 import java.util.List;
 
+import com.ecommerce.order.publisher.KafkaOrderPublisher;
 import com.ecommerce.order.rest.customer.CustomerFeignClient;
+import com.netflix.discovery.converters.Auto;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -37,6 +39,9 @@ public class OrderServiceImpl implements OrderService {
 	@Autowired
 	CustomerFeignClient customerFeignClient;
 	
+	@Autowired
+	KafkaOrderPublisher kafkaOrderPublisher;
+	
 	@Override
 	public List<Order> selectOrderByUserId(String userid) throws Exception {
 		return orderRepository.selectOrderByUserId(userid);
@@ -50,6 +55,10 @@ public class OrderServiceImpl implements OrderService {
 		Customer cust = restTemplate.getForObject(url, Customer.class);
 		order.setName(cust.getName());
 		
+		// Kafka에 publish
+		kafkaOrderPublisher.insertOrder(order);
+		
+		// 로컬 DB에 insert
 		return orderRepository.insertOrder(order);
 	}
 	
