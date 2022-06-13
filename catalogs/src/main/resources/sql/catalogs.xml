@@ -31,6 +31,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		set product_name=#{productName}, stock=#{stock} , price=#{price}
  		where product_id=#{productId}
  	</update>
+ 	
+ 	<update id="updateQuantity" parameterType="com.ecommerce.catalogs.domain.entity.Order">
+ 	   update MSA_CATALOGS
+ 	   set stock = stock - #{quantity}
+ 	   where product_id=#{productId}
+ 	</update>
+ 	
 </mapper>
 
 

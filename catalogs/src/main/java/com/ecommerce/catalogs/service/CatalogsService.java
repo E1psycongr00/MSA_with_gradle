@@ -3,6 +3,7 @@ package com.ecommerce.catalogs.service;
 import java.util.List;
 
 import com.ecommerce.catalogs.domain.entity.Catalogs;
+import com.ecommerce.catalogs.domain.entity.Order;
 
 public interface CatalogsService {
 
@@ -11,4 +12,6 @@ public interface CatalogsService {
 	public int insertCatalogs(Catalogs catalogs) throws Exception;
 	public int deleteCatalogs(String productId) throws Exception;
 	public int updateCatalogs(Catalogs catalogs) throws Exception;
+	
+	public int updateQuantity(Order order) throws Exception;
 }
