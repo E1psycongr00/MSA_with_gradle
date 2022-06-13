@@ -1,0 +1,27 @@
+
+   ==> 반드시 JDK 설치 및 환경변수 설정 필수
+
+    JAVA_HOME=C:\Program Files\Java\jdk1.8.0_301
+    PATH=%JAVA_HOME%\bin;%PATH%
+
+ 1) Zookeeper
+ bin\windows\zookeeper-server-start.bat  config\zookeeper.properties
+
+ 2) Kafka Server
+ bin\windows\kafka-server-start.bat  config\server.properties
+
+ 3) topic 확인 및 생성
+
+  bin\windows\kafka-topics.bat
+  bin\windows\kafka-topics.bat --create --bootstrap-server  localhost:9092  --topic  msa
+  bin\windows\kafka-topics.bat --list --bootstrap-server  localhost:9092
+
+ 4) Producer
+ bin\windows\kafka-console-producer.bat  --broker-list  localhost:9092  --topic  msa
+
+ 5) Consumer
+ bin\windows\kafka-console-consumer.bat  --bootstrap-server localhost:9092  --topic  msa  --from-beginning
+
+ 
+ Order를 이용해 테스트 URI
+ http://localhost:8070/ecommerce/order/swagger-ui.html
