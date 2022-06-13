@@ -1,0 +1,14 @@
+dependencies {
+    // spring web
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // swagger2
+    implementation group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+    implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
+
+    // https://mvnrepository.com/artifact/org.springframework.kafka/spring-kafka
+    implementation group: 'org.springframework.kafka', name: 'spring-kafka', version: '2.7.3'
+
+    // test
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
