@@ -4,4 +4,6 @@ include 'order'
 include 'catalogs'
 include 'ecommerce_eruka'
 include 'ecommerce_api_gateway'
+include 'kafka_publisher'
+include 'kafka_subscriber'
 
