@@ -2,6 +2,7 @@ package com.ecommerce.catalogs.domain.repository;
 
 import java.util.List;
 
+import com.ecommerce.catalogs.domain.entity.Order;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.ecommerce.catalogs.domain.entity.Catalogs;
@@ -14,5 +15,7 @@ public interface CatalogsRepository {
 	public int insertCatalogs(Catalogs catalogs) throws Exception;
 	public int deleteCatalogs(String productId) throws Exception;
 	public int updateCatalogs(Catalogs catalogs) throws Exception;
+	
+	public int updateQuantity(Order order) throws Exception;
 	
 }

@@ -2,6 +2,7 @@ package com.ecommerce.catalogs.service;
 
 import java.util.List;
 
+import com.ecommerce.catalogs.domain.entity.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,5 +40,11 @@ public class CatalogsServiceImpl implements CatalogsService {
 	public int updateCatalogs(Catalogs catalogs) throws Exception {
 		return catalogsRepository.updateCatalogs(catalogs);
 	}
-
+	
+	@Override
+	public int updateQuantity(Order order) throws Exception {
+		return catalogsRepository.updateQuantity(order);
+	}
+	
+	
 }
