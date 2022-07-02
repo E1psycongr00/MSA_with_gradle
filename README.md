@@ -1,5 +1,5 @@
 # MSA_with_gradle
-MSA 학습 내용을 gradle로 다시 만들어보기
+MSA 학습 내용을 Maven에서 Gradle을 활용한 멀티모듈로 재구성해보기
 
 
 ## 목적
